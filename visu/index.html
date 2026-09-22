@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visual Assist X 官方与用户指南：全面的代码辅助工具使用教程、快捷键大全、配置指南及常见问题解答。">
+    <meta name="keywords" content="Visual Assist, Visual Assist X, 代码辅助, Visual Studio 插件, 代码补全, 快捷键">
+    <title>Visual Assist - Visual Studio 代码辅助插件官方指南与配置教程</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --bg-body: #f4f5f7;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --accent-blue: #0078d4;
+            --accent-blue-hover: #005a9e;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --border-color: #e1dfdd;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 32px;
+            --radius: 8px;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        nav ul {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-blue);
+        }
+
+        .header-cta {
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 6px 16px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .header-cta:hover {
+            background-color: var(--accent-blue-hover);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: white;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-blue-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 120, 212, 0.05);
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title h2 {
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Syntax Highlighting Simulation */
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            font-family: "Consolas", "Monaco", "Courier New", monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .code-comment { color: #6a9955; }
+        .code-keyword { color: #569cd6; }
+        .code-type { color: #4ec9b0; }
+        .code-string { color: #ce9178; }
+        .code-function { color: #dcdcaa; }
+
+        /* Sidebar */
+        .sidebar-card {
+            background: var(--bg-card);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .kbd-list li {
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .kbd-list kbd {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Installation Steps */
+        .step-list {
+            counter-reset: step;
+        }
+
+        .step-item {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .step-item::before {
+            counter-increment: step;
+            content: counter(step);
+            background-color: var(--accent-blue);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-content h4 {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+        }
+
+        .step-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--spacing-lg);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+
+        .footer-col h4 {
+            margin-bottom: var(--spacing-md);
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-col ul li a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--spacing-lg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            nav {
+                display: none; /* Simplified for static demo */
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-md);
+            }
+
+            .hero-btns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span>Visual</span> Assist
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#features">功能特性</a></li>
+                    <li><a href="#installation">安装指南</a></li>
+                    <li><a href="#shortcuts">快捷键</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="header-cta">下载插件</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Visual Assist - Visual Studio 的终极代码辅助工具</h1>
+                <p>提升 C/C++、C#、Java 等多种语言开发效率。智能代码导航、重构、补全与格式化，让编码更流畅。</p>
+                <div class="hero-btns">
+                    <a href="#installation" class="btn btn-primary">查看安装教程</a>
+                    <a href="#features" class="btn btn-outline">了解功能详情</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Left Content -->
+            <div class="main-content">
+                <!-- Features -->
+                <section id="features">
+                    <div class="section-title">
+                        <h2>核心功能特性</h2>
+                        <span class="section-subtitle">Why Visual Assist?</span>
+                    </div>
+                    <div class="features-grid">
+                        <article class="feature-card">
+                            <span class="feature-icon">🔍</span>
+                            <h3>智能代码导航</h3>
+                            <p>无需鼠标，通过 Ctrl+点击即可快速跳转到定义、实现或引用。支持跨文件、跨项目的符号查找。</p>
+                        </article>
+                        <article class="feature-card">
+                            <span class="feature-icon">⚡</span>
+                            <h3>极速重构</h3>
+                            <p>安全地重命名变量、移动成员、提取方法。在保证代码逻辑不变的前提下，优化代码结构。</p>
+                        </article>
+                        <article class="feature-card">
+                            <span class="feature-icon">🛡️</span>
+                            <h3>代码分析</h3>
+                            <p>实时检测未使用的变量、重复代码、潜在的类型转换错误，并提供修复建议。</p>
+                        </article>
+                        <article class="feature-card">
+                            <span class="feature-icon">🎨</span>
+                            <h3>增强的 IntelliSense</h3>
+                            <p>更智能的代码补全建议，包含文档注释提示，支持 XML 文档的自动生成与格式化。</p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Installation -->
+                <section id="installation">
+                    <div class="section-title">
+                        <h2>安装与配置指南</h2>
+                        <span class="section-subtitle">Getting Started</span>
+                    </div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-content">
+                                <h4>1. 下载安装包</h4>
+                                <p>访问官方插件市场或指定下载源，下载适用于 Visual Studio 2022/2019/2017 版本的 Visual Assist 安装程序。</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-content">
+                                <h4>2. 运行安装程序</h4>
+                                <p>双击安装包，按照向导提示点击“Next”。建议勾选“Add to PATH”以在命令行中使用 VA 的辅助工具。</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-content">
+                                <h4>3. 激活与许可</h4>
+                                <p>安装完成后，输入您的 Visual Studio 套餐激活码。激活后，IDE 右下角将显示绿色状态指示。</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-content">
+                                <h4>4. 首次配置</h4>
+                                <p>打开 Visual Assist Options 对话框，根据您的编程习惯调整自动补全、导航行为和外观主题。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Usage Example -->
+                <section>
+                    <div class="section-title">
+                        <h2>实战应用示例</h2>
+                        <span class="section-subtitle">Usage Example</span>
+                    </div>
+                    <p style="margin-bottom: 16px; color: var(--text-secondary);">
+                        以下示例展示如何使用 Visual Assist 进行快速导航与重构。
+                    </p>
+                    <div class="code-block">
+<span class="code-comment">// 定义一个简单的类</span>
+<span class="code-keyword">class</span> <span class="code-type">DataProcessor</span> {
+<span class="code-keyword">public</span>:
+    <span class="code-type">DataProcessor</span>() {}
+    
+    <span class="code-comment">// 原始方法</span>
+    <span class="code-keyword">void</span> <span class="code-function">processData</span>(<span class="code-type">std::string</span> input) {
+        <span class="code-type">std::cout</span> << input << std::endl;
+    }
+};
+
+<span class="code-comment">// 使用 Ctrl+Shift+T 重命名方法</span>
+<span class="code-keyword">void</span> <span class="code-function">processData</span>(<span class="code-type">std::string</span> input) {
+    <span class="code-type">std::cout</span> << input << std::endl;
+}</div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card" id="shortcuts">
+                    <h3>常用快捷键</h3>
+                    <ul class="kbd-list">
+                        <li>
+                            <span>跳转到定义</span>
+                            <kbd>Ctrl + Click</kbd>
+                        </li>
+                        <li>
+                            <span>查找所有引用</span>
+                            <kbd>Shift + F12</kbd>
+                        </li>
+                        <li>
+                            <span>重命名符号</span>
+                            <kbd>F2</kbd>
+                        </li>
+                        <li>
+                            <span>查看文档注释</span>
+                            <kbd>Ctrl + K, Q</kbd>
+                        </li>
+                        <li>
+                            <span>格式化文档</span>
+                            <kbd>Ctrl + K, D</kbd>
+                        </li>
+                        <li>
+                            <span>列出所有成员</span>
+                            <kbd>Ctrl + Space</kbd>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>支持的语言</h3>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9rem; color: var(--text-secondary);">
+                        <li>C/C++</li>
+                        <li>C#</li>
+                        <li>Visual Basic</li>
+                        <li>Java</li>
+                        <li>TypeScript</li>
+                        <li>Python</li>
+                        <li>Ruby</li>
+                        <li>Go</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card" style="background-color: #e6f2ff; border-color: #cce8ff;">
+                    <h3>常见问题</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 8px;">安装后没有反应？</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">请检查 Visual Studio 版本是否匹配，并尝试重启 IDE。</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 12px; display: inline-block;">
+                    <span>Visual</span> Assist
+                </a>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); max-width: 300px;">
+                    致力于为开发者提供最专业的代码辅助工具，提升编码效率与代码质量。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>资源</h4>
+                <ul>
+                    <li><a href="#">官方文档</a></li>
+                    <li><a href="#">更新日志</a></li>
+                    <li><a href="#">社区论坛</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>产品</h4>
+                <ul>
+                    <li><a href="#">Visual Assist X</a></li>
+                    <li><a href="#">Visual Assist for VS Code</a></li>
+                    <li><a href="#">定价方案</a></li>
+                    <li><a href="#">企业版</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Visual Assist Guide. All rights reserved. 本页面为技术分享与使用指南，非官方网站。</p>
+        </div>
+    </footer>
+
+</body>
+                          </html>
