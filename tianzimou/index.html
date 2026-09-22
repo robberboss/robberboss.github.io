@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="天子谋 - 古风权谋小说全集阅读平台，收录经典穿越、宫廷斗争、青梅竹马等热门题材。提供在线阅读、章节目录、角色介绍及读者社区互动，沉浸式体验古代皇权争斗与爱恨纠葛。">
+    <meta name="keywords" content="天子谋,小说阅读,古风小说,权谋小说,穿越小说,在线阅读">
+    <title>天子谋 - 古风权谋与穿越小说全集阅读</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8e2de2;
+            --secondary-color: #4a00e0;
+            --accent-color: #f8c291;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-body: #fdfbf7;
+            --bg-card: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-hover: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 1rem;
+            opacity: 0.9;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.15);
+            opacity: 1;
+        }
+
+        .search-box {
+            display: flex;
+        }
+
+        .search-box input {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(42, 39, 46, 0.9), rgba(42, 39, 46, 0.6)), url('https://picsum.photos/seed/ancient/1600/900') no-repeat center center/cover;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(248, 194, 145, 0.4);
+        }
+
+        /* Sections */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        /* Grid Layouts */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* Book Card */
+        .book-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .book-cover {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .book-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .book-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .book-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-footer {
+            margin-top: auto;
+        }
+
+        .read-btn {
+            width: 100%;
+            padding: 8px;
+            background: #f0f0f0;
+            color: var(--text-dark);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .read-btn:hover {
+            background: #e0e0e0;
+        }
+
+        /* Category Nav */
+        .category-nav {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .category-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .cat-item {
+            padding: 8px 20px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            border: 1px solid #eee;
+        }
+
+        .cat-item:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Ranking List */
+        .ranking-list {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            width: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+
+        .rank-num.top-1 { color: #ff4757; }
+        .rank-num.top-2 { color: #ffa502; }
+        .rank-num.top-3 { color: #ffa502; }
+
+        .rank-info {
+            flex-grow: 1;
+        }
+
+        .rank-title {
+            font-weight: bold;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .rank-stats {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Author/Feature Section */
+        .feature-section {
+            background: #eef2f3;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .feature-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 { font-size: 2.5rem; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .search-box { width: 100%; }
+            .search-box input { flex-grow: 1; }
+            .grid-4, .grid-3, .feature-grid { grid-template-columns: 1fr; }
+            .hero { height: 350px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <span>天子谋</span> 古风阅读
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">全本小说</a></li>
+                <li><a href="#">连载更新</a></li>
+                <li><a href="#">作者专区</a></li>
+                <li><a href="#">排行榜</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="搜索书名、作者...">
+            <button>搜索</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1>权倾天下，谋定江山</h1>
+                <p>探索古风权谋小说的极致魅力，穿越时空，在朝堂权争与爱恨情仇中，见证一段段波澜壮阔的历史传奇。</p>
+                <a href="#" class="btn">开始阅读</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Categories -->
+        <section>
+            <div class="category-nav">
+                <div class="category-grid">
+                    <a href="#" class="cat-item">宫廷斗争</a>
+                    <a href="#" class="cat-item">穿越重生</a>
+                    <a href="#" class="cat-item">青梅竹马</a>
+                    <a href="#" class="cat-item">先婚后爱</a>
+                    <a href="#" class="cat-item">权臣谋略</a>
+                    <a href="#" class="cat-item">宫斗宅斗</a>
+                    <a href="#" class="cat-item">历史架空</a>
+                    <a href="#" class="cat-item">虐恋情深</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hot Recommendations -->
+        <section>
+            <h2 class="section-title">热门推荐</h2>
+            <div class="grid-4">
+                <article class="book-card">
+                    <div class="book-cover">
+                        <span class="book-tag">连载中</span>
+                        <img src="https://picsum.photos/seed/book1/300/400" alt="书封">
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title"><a href="#">凤谋天下：冷宫弃妃的逆袭</a></h3>
+                        <div class="book-meta">
+                            <span>作者：墨染青衣</span>
+                            <span>更新：今日更新</span>
+                        </div>
+                        <p class="book-desc">前世她是将门虎女，一朝穿越，竟成了人人唾弃的废妃。这一世，她发誓要手撕白莲，脚踩绿茶，夺回属于自己的一切...</p>
+                        <div class="book-footer">
+                            <button class="read-btn">立即阅读</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">
+                        <span class="book-tag">完结</span>
+                        <img src="https://picsum.photos/seed/book2/300/400" alt="书封">
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title"><a href="#">江山为聘：摄政王的掌心宠</a></h3>
+                        <div class="book-meta">
+                            <span>作者：云中书梦</span>
+                            <span>阅读：1200万+</span>
+                        </div>
+                        <p class="book-desc">他是权倾朝野的摄政王，手段狠辣，令人闻风丧胆。她是温婉如玉的丞相之女，却因家族变故不得不入王府冲喜。</p>
+                        <div class="book-footer">
+                            <button class="read-btn">立即阅读</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">
+                        <span class="book-tag">连载中</span>
+                        <img src="https://picsum.photos/seed/book3/300/400" alt="书封">
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title"><a href="#">谋定天下：帝尊归来</a></h3>
+                        <div class="book-meta">
+                            <span>作者：乱世浮生</span>
+                            <span>阅读：850万+</span>
+                        </div>
+                        <p class="book-desc">曾经的一代帝尊，陨落轮回。再次睁眼，已是千年之后。这一世，他不仅要重登皇位，更要为前世之仇雪恨。</p>
+                        <div class="book-footer">
+                            <button class="read-btn">立即阅读</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-cover">
+                        <span class="book-tag">完结</span>
+                        <img src="https://picsum.photos/seed/book4/300/400" alt="书封">
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title"><a href="#">将军令：红妆策马踏山河</a></h3>
+                        <div class="book-meta">
+                            <span>作者：剑指天涯</span>
+                            <span>阅读：900万+</span>
+                        </div>
+                        <p class="book-desc">她是身负血海深仇的冷面将军，他是心怀天下的当朝太子。从青梅竹马到陌路仇敌，他们能否在乱世中守住初心？</p>
+                        <div class="book-footer">
+                            <button class="read-btn">立即阅读</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+            <!-- Latest Updates -->
+            <section>
+                <h2 class="section-title">最新章节</h2>
+                <div class="ranking-list">
+                    <div class="ranking-item">
+                        <span class="rank-num">1</span>
+                        <div class="rank-info">
+                            <a href="#" class="rank-title">凤谋天下：冷宫弃妃的逆袭 第108章 策反</a>
+                            <span class="rank-stats">墨染青衣 · 2小时前 · 2434字</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <span class="rank-num">2</span>
+                        <div class="rank-info">
+                            <a href="#" class="rank-title">江山为聘：摄政王的掌心宠 第452章 误会解开</a>
+                            <span class="rank-stats">云中书梦 · 5小时前 · 2100字</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <span class="rank-num">3</span>
+                        <div class="rank-info">
+                            <a href="#" class="rank-title">谋定天下：帝尊归来 第89章 皇城夜谈</a>
+                            <span class="rank-stats">乱世浮生 · 昨天 · 3200字</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <span class="rank-num">4</span>
+                        <div class="rank-info">
+                            <a href="#" class="rank-title">将军令：红妆策马踏山河 第156章 挑灯看剑</a>
+                            <span class="rank-stats">剑指天涯 · 昨天 · 1800字</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <span class="rank-num">5</span>
+                        <div class="rank-info">
+                            <a href="#" class="rank-title">天子谋·前传 第3章 初入京华</a>
+                            <span class="rank-stats">夜雨听风 · 2天前 · 2900字</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ranking Sidebar -->
+            <aside>
+                <section>
+                    <h2 class="section-title">月票榜</h2>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <span class="rank-num top-1">1</span>
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">谋定天下：帝尊归来</a>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="rank-num top-2">2</span>
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">凤谋天下：冷宫弃妃的逆袭</a>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="rank-num top-3">3</span>
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">江山为聘：摄政王的掌心宠</a>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="rank-num">4</span>
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">将军令：红妆策马踏山河</a>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <span class="rank-num">5</span>
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">盛世红妆</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section style="margin-top: 30px;">
+                    <h2 class="section-title">猜你喜欢</h2>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">凰权：权倾天下</a>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">庆余年：权谋天下</a>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">琅琊榜：麒麟才子</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+        <!-- Feature/Service Section -->
+        <section class="feature-section">
+            <div class="container">
+                <div class="feature-grid">
+                    <div>
+                        <div class="feature-icon">📚</div>
+                        <h3 class="feature-title">海量书库</h3>
+                        <p class="feature-text">收录数万部古风权谋、穿越小说，满足您的阅读需求。</p>
+                    </div>
+                    <div>
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">极速更新</h3>
+                        <p class="feature-text">第一时间同步正版作者更新，不错过任何精彩章节。</p>
+                    </div>
+                    <div>
+                        <div class="feature-icon">💎</div>
+                        <h3 class="feature-title">纯净阅读</h3>
+                        <p class="feature-text">无广告打扰，沉浸式阅读体验，专注剧情本身。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>关于天子谋</h4>
+                <p style="font-size: 0.9rem; line-height: 1.8;">天子谋致力于为古风小说爱好者提供最优质的阅读体验。我们精选热门权谋、穿越题材，打造专业的古风阅读社区。</p>
+            </div>
+            <div class="footer-col">
+                <h4>热门分类</h4>
+                <ul>
+                    <li><a href="#">宫廷斗争</a></li>
+                    <li><a href="#">穿越重生</a></li>
+                    <li><a href="#">青梅竹马</a></li>
+                    <li><a href="#">先婚后爱</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>帮助中心</h4>
+                <ul>
+                    <li><a href="#">注册登录</a></li>
+                    <li><a href="#">阅读指南</a></li>
+                    <li><a href="#">版权声明</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <ul>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">新浪微博</a></li>
+                    <li><a href="#">QQ群交流</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 天子谋古风阅读网 版权所有 | 本站内容均为网友上传，仅供学习交流</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+      </html>
