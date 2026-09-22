@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="泡泡战士泡泡战士 - 专业游戏攻略、地图技巧、武器评测及玩家社区分享平台。提供最新版本更新资讯、排位赛技巧与休闲娱乐玩法指南。">
+    <meta name="keywords" content="泡泡战士,泡泡战士攻略,泡泡战士地图,泡泡战士武器,泡泡战士技巧,泡泡战士下载">
+    <title>泡泡战士-专业游戏攻略与玩家社区指南</title>
+    <style>
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+            --accent-color: #ff0055;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-body: #f4f7f9;
+            --bg-card: #ffffff;
+            --border-radius: 12px;
+            --container-width: 1200px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 48px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(58, 123, 213, 0.4);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(120deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.9;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 通用 Section */
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 2px solid #eee;
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-more {
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .section-more:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 攻略分类 */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .cat-icon {
+            font-size: 40px;
+            margin-bottom: var(--spacing-md);
+            display: inline-block;
+        }
+
+        .cat-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cat-desc {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* 游戏资讯 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .news-img {
+            width: 100%;
+            height: 180px;
+            background-color: #e0e0e0;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: var(--spacing-lg);
+        }
+
+        .news-meta {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            font-size: 14px;
+            color: var(--text-light);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 武器/角色排行 */
+        .ranking-wrapper {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .ranking-item:hover {
+            background: #eef2f7;
+        }
+
+        .rank-num {
+            font-size: 24px;
+            font-weight: 800;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--spacing-md);
+        }
+
+        .rank-num.top-1 { color: #ffd700; }
+        .rank-num.top-2 { color: #c0c0c0; }
+        .rank-num.top-3 { color: #cd7f32; }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .rank-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .rank-type {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .rank-stats {
+            text-align: right;
+        }
+
+        .stat-val {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            background-color: #eef4fc;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: var(--spacing-md);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .faq-question {
+            padding: var(--spacing-md) var(--spacing-lg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: white;
+        }
+
+        .faq-question:hover {
+            background-color: #fafafa;
+        }
+
+        .faq-answer {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--text-light);
+            font-size: 14px;
+            display: none;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--secondary-color);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-brand h2 {
+            font-size: 20px;
+            margin-bottom: var(--spacing-md);
+            color: white;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            opacity: 0.7;
+            max-width: 300px;
+        }
+
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: var(--spacing-md);
+            color: white;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            opacity: 0.5;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .ranking-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+
+            .rank-stats {
+                width: 100%;
+                text-align: left;
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid #eee;
+                padding-top: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>泡泡</span>战士
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">游戏攻略</a>
+                <a href="#">武器图鉴</a>
+                <a href="#">地图技巧</a>
+                <a href="#">玩家社区</a>
+            </nav>
+            <a href="#" class="btn-download">立即下载游戏</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>释放你的泡泡天赋<br>引爆竞技乐趣</h1>
+                <div class="hero-tags">
+                    <span class="tag">#快节奏射击</span>
+                    <span class="tag">#团队竞技</span>
+                    <span class="tag">#休闲竞技</span>
+                </div>
+                <a href="#" class="btn-download" style="background: white; color: var(--secondary-color);">查看最新版本更新</a>
+            </div>
+        </section>
+
+        <!-- 游戏特色/分类 -->
+        <section class="container">
+            <div class="section-header">
+                <h2 class="section-title">游戏特色</h2>
+                <a href="#" class="section-more">查看全部特色 &rarr;</a>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="cat-icon">🎯</div>
+                    <h3 class="cat-title">精准射击</h3>
+                    <p class="cat-desc">多样的枪械与泡泡道具，考验你的瞄准与反应能力。</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🧱</div>
+                    <h3 class="cat-title">战术建造</h3>
+                    <p class="cat-desc">利用泡泡建造掩体与通道，改变战局走向。</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🤝</div>
+                    <h3 class="cat-title">团队协作</h3>
+                    <p class="cat-desc">与好友组队，制定战术，体验默契配合的快感。</p>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🎮</div>
+                    <h3 class="cat-title">休闲娱乐</h3>
+                    <p class="cat-desc">无论是排位上分还是休闲娱乐，总有适合你的模式。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 游戏资讯 -->
+        <section style="background-color: white;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">最新资讯</h2>
+                    <a href="#" class="section-more">更多资讯 &rarr;</a>
+                </div>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/bubble1/400/250" alt="游戏资讯" class="news-img">
+                        <div class="news-content">
+                            <div class="news-meta">2023-10-24 · 版本更新</div>
+                            <h3 class="news-title"><a href="#">全新赛季“霓虹之夜”即将开启，限定皮肤等你来拿</a></h3>
+                            <p class="news-excerpt">本次版本更新将引入全新的霓虹主题地图，并推出多款限定武器皮肤，战斗体验全面升级。</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/bubble2/400/250" alt="游戏资讯" class="news-img">
+                        <div class="news-content">
+                            <div class="news-meta">2023-10-20 · 活动公告</div>
+                            <h3 class="news-title"><a href="#">双倍经验活动开启，助你快速提升段位</a></h3>
+                            <p class="news-excerpt">为庆祝新版本上线，官方开启为期三天的双倍经验与金币活动，赶快上线参与吧！</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/bubble3/400/250" alt="游戏资讯" class="news-img">
+                        <div class="news-content">
+                            <div class="news-meta">2023-10-15 · 玩家故事</div>
+                            <h3 class="news-title"><a href="#">专访职业战队：如何构建无敌的泡泡防线</a></h3>
+                            <p class="news-excerpt">深入解析职业选手的战术思路，教你如何在关键时刻利用泡泡道具反败为胜。</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 武器/角色排行 -->
+        <section class="container">
+            <div class="section-header">
+                <h2 class="section-title">热门武器排行</h2>
+                <a href="#" class="section-more">查看完整榜单 &rarr;</a>
+            </div>
+            <div class="ranking-wrapper">
+                <div class="ranking-list">
+                    <div class="ranking-item">
+                        <div class="rank-num top-1">1</div>
+                        <div class="rank-info">
+                            <div class="rank-name">彩虹加特林</div>
+                            <div class="rank-type">重机枪 · 全图通用</div>
+                        </div>
+                        <div class="rank-stats">
+                            <span class="stat-val">98%</span>
+                            <span class="stat-label">推荐度</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="rank-num top-2">2</div>
+                        <div class="rank-info">
+                            <div class="rank-name">极速泡泡枪</div>
+                            <div class="rank-type">冲锋枪 · 近战爆发</div>
+                        </div>
+                        <div class="rank-stats">
+                            <span class="stat-val">95%</span>
+                            <span class="stat-label">推荐度</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="rank-num top-3">3</div>
+                        <div class="rank-info">
+                            <div class="rank-name">冰霜霰弹枪</div>
+                            <div class="rank-type">霰弹枪 · 控制领域</div>
+                        </div>
+                        <div class="rank-stats">
+                            <span class="stat-val">92%</span>
+                            <span class="stat-label">推荐度</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="rank-num">4</div>
+                        <div class="rank-info">
+                            <div class="rank-name">狙击泡泡</div>
+                            <div class="rank-type">狙击枪 · 远程狙杀</div>
+                        </div>
+                        <div class="rank-stats">
+                            <span class="stat-val">88%</span>
+                            <span class="stat-label">推荐度</span>
+                        </div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="rank-num">5</div>
+                        <div class="rank-info">
+                            <div class="rank-name">火箭发射器</div>
+                            <div class="rank-type">重武器 · 爆炸范围伤害</div>
+                        </div>
+                        <div class="rank-stats">
+                            <span class="stat-val">85%</span>
+                            <span class="stat-label">推荐度</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">常见问题</h2>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">如何下载并安装泡泡战士？</div>
+                        <div class="faq-answer">您可以通过本站提供的下载链接获取最新版本安装包。安装包为绿色免安装版，下载后直接运行即可启动游戏。请确保您的设备满足最低配置要求。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">游戏支持哪些平台？</div>
+                        <div class="faq-answer">泡泡战士目前主要支持Windows PC端，部分版本也兼容Android移动端。不同平台的账号数据互通，您可以在电脑和手机之间无缝切换。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">游戏中如何获得稀有皮肤？</div>
+                        <div class="faq-answer">稀有皮肤通常通过参与游戏内的限时活动、开启宝箱或者通过游戏币商城购买获得。部分限定皮肤仅能在特定赛季或活动中获取。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">遇到游戏卡顿怎么办？</div>
+                        <div class="faq-answer">建议您检查网络连接，关闭后台运行的占用资源较多的程序。进入游戏设置，将画面质量调整为“中等”或“低”以提升流畅度。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>泡泡战士</h2>
+                    <p>提供最全面的游戏攻略、武器评测与社区交流平台。致力于帮助每一位玩家提升技术，享受游戏的乐趣。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>快速导航</h3>
+                    <ul>
+                        <li><a href="#">游戏首页</a></li>
+                        <li><a href="#">下载中心</a></li>
+                        <li><a href="#">官方论坛</a></li>
+                        <li><a href="#">客服支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>游戏攻略</h3>
+                    <ul>
+                        <li><a href="#">新手入门</a></li>
+                        <li><a href="#">武器图鉴</a></li>
+                        <li><a href="#">地图详解</a></li>
+                        <li><a href="#">排位技巧</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>关注我们</h3>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">玩家QQ群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 泡泡战士攻略网 版权所有 | 本站内容仅供学习交流使用</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+                  </html>
